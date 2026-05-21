@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Zafiro - Elegancia que brilla contigo</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* PALETA DE COLORES OFICIAL */
+        :root {
+            --azul-oscuro: #03091e;              
+            --azul-diamante: rgb(15, 82, 186);    
+            --blanco-perla: rgb(242, 242, 242);   
+            --dorado-elegante: rgb(212, 175, 55); 
+            --azul-celeste: rgb(135, 206, 235);   
+        }
+
+        /* CONFIGURACIÓN BASE Y SCROLL SUAVE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--blanco-perla);
+            background-color: var(--azul-oscuro);
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: var(--azul-oscuro);
+            background-image: 
+                radial-gradient(rgba(15, 82, 186, 0.12) 1px, transparent 1px),
+                radial-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        /* ANIMACIONES INTERACTIVAS */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { filter: drop-shadow(0 0 15px rgba(15, 82, 186, 0.4)); }
+            50% { filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.6)); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.9s cubic-bezier(0.215, 0.610, 0.355, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* MENÚ DE NAVEGACIÓN EN LÍNEA CO BLUR */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 8%;
+            background: rgba(3, 9, 30, 0.75);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+
+        .logo-nav {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 3px;
+            color: var(--blanco-perla);
+        }
+
+        .logo-nav span {
+            color: var(--dorado-elegante);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: rgba(242, 242, 242, 0.8);
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -6px;
+            left: 0;
+            background-color: var(--dorado-elegante);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--blanco-perla);
+        }
+
+        /* SECCIÓN HERO */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at center, rgba(15, 82, 186, 0.1) 0%, rgba(3, 9, 30, 1) 80%);
+            position: relative;
+        }
+
+        .hero-logo-box {
+            animation: float 5s ease-in-out infinite, pulseGlow 5s ease-in-out infinite;
+            margin-bottom: 5px;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .hero-logo-box img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .hero .tagline {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            letter-spacing: 6px;
+            color: var(--azul-celeste);
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .btn-luxury {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--azul-oscuro);
+            background: linear-gradient(90deg, var(--dorado-elegante), #fff4b8);
+            padding: 16px 38px;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            text-decoration: none;
+        }
+
+        .btn-luxury:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(135, 206, 235, 0.5);
+            background: linear-gradient(90deg, var(--azul-celeste), #ffffff);
+        }
+
+        /* SECCIONES */
+        section {
+            padding: 140px 10% 100px 10%;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 36px;
+            font-weight: 400;
+            letter-spacing: 5px;
+            margin-bottom: 15px;
+            color: var(--blanco-perla);
+        }
+
+        .section-header .sub {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--dorado-elegante);
+            display: inline-block;
+        }
+
+        /* TARJETAS GLASSMORPHISM */
+        .glass-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.015);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 50px 40px;
+            border-radius: 4px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--azul-celeste), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .glass-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .glass-card:hover {
+            background: rgba(15, 82, 186, 0.05);
+            border-color: rgba(212, 175, 55, 0.25);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            color: var(--dorado-elegante);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .glass-card p {
+            font-size: 14.5px;
+            line-height: 1.8;
+            color: rgba(242, 242, 242, 0.8);
+            text-align: justify;
+            font-weight: 300;
+        }
+
+        /* ESPECIFICACIONES DEL PROYECTO */
+        .game-spec-box {
+            background: rgba(15, 82, 186, 0.03);
+            border: 1px solid rgba(135, 206, 235, 0.15);
+            border-radius: 6px;
+            padding: 45px;
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+        }
+
+        .spec-left h3, .spec-right h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--dorado-elegante);
+            font-size: 20px;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+        }
+
+        .spec-left p {
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: rgba(242, 242, 242, 0.85);
+            margin-bottom: 20px;
+        }
+
+        .spec-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .spec-list li {
+            font-size: 14px;
+            color: rgba(242, 242, 242, 0.8);
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .spec-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--azul-celeste);
+        }
+
+        .objective-highlight {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 20px;
+            font-style: italic;
+            color: var(--blanco-perla);
+        }
+
+        .info-badge-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 35px;
+        }
+
+        .info-badge {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(135, 206, 235, 0.3);
+            padding: 10px 20px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--azul-celeste);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .info-badge.sector {
+            border-color: var(--dorado-elegante);
+            color: var(--dorado-elegante);
+            background: rgba(212, 175, 55, 0.03);
+            font-weight: 500;
+        }
+
+        /* SECCIÓN VALORES */
+        .valores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+        }
+
+        .valor-card {
+            background: rgba(255, 255, 255, 0.005);
+            border-bottom: 2px solid rgba(15, 82, 186, 0.15);
+            padding: 35px 25px;
+            transition: all 0.4s ease;
+        }
+
+        .valor-card:hover {
+            border-bottom-color: var(--dorado-elegante);
+            background: rgba(255, 255, 255, 0.02);
+            transform: scale(1.02);
+        }
+
+        .valor-id {
+            font-family: 'Cinzel', serif;
+            font-size: 13px;
+            color: var(--azul-celeste);
+            margin-bottom: 12px;
+            display: block;
+            letter-spacing: 2px;
+        }
+
+        .valor-card h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            color: var(--blanco-perla);
+        }
+
+        .valor-card p {
+            font-size: 13px;
+            color: rgba(242, 242, 242, 0.65);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* MODAL INTERACTIVO DESLIZABLE */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(3, 9, 30, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-box {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            padding: 45px 40px;
+            border-radius: 6px;
+            width: 90%;
+            max-width: 480px;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+            transform: translateX(100vw);
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: translateX(0);
+        }
+
+        .modal-box h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--dorado-elegante);
+            font-size: 26px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .modal-box p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(242, 242, 242, 0.8);
+            margin-bottom: 35px;
+            font-weight: 300;
+        }
+
+        .btn-play {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--azul-oscuro);
+            background: linear-gradient(90deg, var(--dorado-elegante), #fff4b8);
+            padding: 15px 50px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-play:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 25px rgba(135, 206, 235, 0.6);
+            background: linear-gradient(90deg, var(--azul-celeste), #ffffff);
+        }
+
+        .close-btn {
+            margin-top: 20px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(242, 242, 242, 0.4);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--dorado-elegante);
+        }
+
+        /* CONTENEDOR DE JUEGO EN PANTALLA COMPLETA FIXED */
+        #game-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 3000;
+            display: none; /* Se activa con JS */
+            background: var(--azul-oscuro);
+        }
+
+        #game-screen iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+        }
+
+        #exit-game-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(3, 9, 30, 0.85);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--blanco-perla);
+            padding: 8px 16px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            z-index: 3001;
+            border-radius: 2px;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s;
+        }
+
+        #exit-game-btn:hover {
+            background: var(--dorado-elegante);
+            color: var(--azul-oscuro);
+        }
+
+        footer {
+            background-color: rgb(3, 9, 30);
+            padding: 50px 8%;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            text-align: center;
+            font-size: 13px;
+            color: rgba(242, 242, 242, 0.4);
+            letter-spacing: 1px;
+        }
+
+        footer b {
+            color: var(--dorado-elegante);
+            font-family: 'Cinzel', serif;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 20px 5%; }
+            nav { display: none; } 
+            .hero-logo-box { max-width: 320px; }
+            .section-header h2 { font-size: 28px; }
+            section { padding: 100px 5% 70px 5%; }
+            .game-spec-box { grid-template-columns: 1fr; padding: 30px; }
+            .modal-box { padding: 35px 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-nav">
+            HOTEL <span>ZAFIRO</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#identidad">Identidad</a></li>
+                <li><a href="#valores">Valores</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-logo-box">
+            <img src="https://i.postimg.cc/VvYxnrW5/Chat-GPT-Image-21-may-2026-01-36-52-p-m.png" alt="Hotel Zafiro Logo">
+        </div>
+        <p class="tagline">Zafiro Deluxe Project</p>
+        <a href="#" class="btn-luxury" id="btn-ingresar">Ingresar al Hotel</a>
+    </section>
+
+    <section id="identidad">
+        <div class="section-header reveal">
+            <span class="sub">Propósito Institucional</span>
+            <h2>Nuestra Esencia</h2>
+        </div>
+        
+        <div class="glass-container">
+            <div class="glass-card reveal">
+                <h3>Misión</h3>
+                <p>Ofrecemos un servicio de hospedaje cómodo, limpio y seguro, donde nuestros huéspedes se sientan tranquilos y bien atendidos, cumpliendo siempre con las reglas sanitarias, el orden y una buena limpieza.</p>
+            </div>
+            
+            <div class="glass-card reveal">
+                <h3>Visión</h3>
+                <p>Ser un hotel reconocido por brindar confianza, buen trato y excelentes condiciones de higiene, convirtiéndonos en una opción preferida para quienes buscan un lugar agradable donde hospedarse.</p>
+            </div>
+        </div>
+
+        <div class="game-spec-box reveal">
+            <div class="spec-left">
+                <h3>Propósito del Sistema</h3>
+                <p>Que el jugador administre y haga crecer el Hotel Zafiro, brindando un servicio de excelencia a los huéspedes mediante las siguientes dinámicas operativas:</p>
+                <ul class="spec-list">
+                    <li>Atendiendo clientes eficientemente.</li>
+                    <li>Limpiando y manteniendo organizado el hotel de forma rigurosa.</li>
+                    <li>Mejorando continuamente las instalaciones logísticas.</li>
+                    <li>Resolviendo situaciones complejas del día a día.</li>
+                    <li>Aumentando estratégicamente la reputación global del hotel.</li>
+                </ul>
+                <p class="objective-highlight">
+                    <b>Objetivo Final:</b> Convertir al Hotel Zafiro en el mejor hotel del sector turístico, destacando a nivel competitivo por su elegancia, calidad extrema y un servicio intachable.
+                </p>
+            </div>
+            <div class="spec-right">
+                <h3>Clasificación de Proyecto</h3>
+                <p style="font-size: 13.5px; color: rgba(242,242,242,0.7); line-height: 1.6; margin-bottom: 20px;">
+                    El entorno virtual opera bajo múltiples categorías de diseño interactivo estructurado:
+                </p>
+                <div class="info-badge-container">
+                    <div class="info-badge">Simulación</div>
+                    <div class="info-badge">Estrategia</div>
+                    <div class="info-badge">Administración</div>
+                    <div class="info-badge">Servicio y Hospitalidad</div>
+                    <div class="info-badge">Turismo</div>
+                    <div class="info-badge sector">Sector Terciario (Servicios)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="valores" style="background-color: rgba(255,255,255,0.005);">
+        <div class="section-header reveal">
+            <span class="sub">Pilares de Excelencia</span>
+            <h2>Valores Corporativos</h2>
+        </div>
+
+        <div class="valores-grid">
+            <div class="valor-card reveal">
+                <span class="valor-id">I</span>
+                <h4>Empatía</h4>
+                <p>Escuchamos y comprendemos las necesidades de nuestros clientes, brindando un trato de calidez personalizado.</p>
+            </div>
+            <div class="valor-card reveal">
+                <span class="valor-id">II</span>
+                <h4>Responsabilidad</h4>
+                <p>Cumplimos con las normas establecidas, garantizando que cada servicio sea seguro, eficiente y de confianza.</p>
+            </div>
+            <div class="valor-card reveal">
+                <span class="valor-id">III</span>
+                <h4>Respeto</h4>
+                <p>Fomentamos un ambiente cordial y digno, interactuando con máxima distinción y profesionalismo.</p>
+            </div>
+            <div class="valor-card reveal">
+                <span class="valor-id">IV</span>
+                <h4>Honestidad</h4>
+                <p>Actuamos con absoluta transparencia en nuestros servicios y tarifas, generando credibilidad intachable.</p>
+            </div>
+            <div class="valor-card reveal">
+                <span class="valor-id">V</span>
+                <h4>Trabajo en Equipo</h4>
+                <p>Colaboramos de manera organizada y sumamente comprometida para construir un servicio armónico.</p>
+            </div>
+            <div class="valor-card reveal">
+                <span class="valor-id">VI</span>
+                <h4>Compromiso</h4>
+                <p>Nos esforzamos constantemente para superar las expectativas y elevar los estándares diariamente.</p>
+            </div>
+            <div class="valor-card reveal">
+                <span class="valor-id">VII</span>
+                <h4>Puntualidad</h4>
+                <p>Respetamos rigurosamente los tiempos estipulados, reflejando una perfecta organización logística.</p>
+            </div>
+            <div class="valor-card reveal">
+                <span class="valor-id">VIII</span>
+                <h4>Limpieza</h4>
+                <p>Mantenemos estrictas condiciones de higiene en cada instalación, garantizando el bienestar absoluto de los huéspedes.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal-overlay" id="modal-experiencia">
+        <div class="modal-box">
+            <h3>Zafiro Tycoon</h3>
+            <p>Bienvenido al simulador oficial. Gestiona recursos, expande las habitaciones y experimenta de cerca las operaciones del sector hotelero terciario.</p>
+            <button class="btn-play" id="btn-start-game">Play</button>
+            <div class="close-btn" id="btn-close-modal">Volver a la Página</div>
+        </div>
+    </div>
+
+    <div id="game-screen">
+        <button id="exit-game-btn">Salir del juego</button>
+        <iframe src="" id="game-iframe"></iframe>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 <b>HOTEL ZAFIRO</b>. Todos los derechos reservados.</p>
+        <p style="margin-top: 12px; font-size: 11px; opacity: 0.4; font-weight: 300; letter-spacing: 2px;">PROYECTO ACADÉMICO DE ADMINISTRACIÓN Y TURISMO • C.E.P.A.</p>
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 80; 
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
+
+        const btnIngresar = document.getElementById('btn-ingresar');
+        const modalExperiencia = document.getElementById('modal-experiencia');
+        const btnCloseModal = document.getElementById('btn-close-modal');
+        const btnStartGame = document.getElementById('btn-start-game');
+        const gameScreen = document.getElementById('game-screen');
+        const gameIframe = document.getElementById('game-iframe');
+        const exitGameBtn = document.getElementById('exit-game-btn');
+
+        btnIngresar.addEventListener('click', function(e) {
+            e.preventDefault();
+            modalExperiencia.classList.add('active');
+        });
+
+        btnCloseModal.addEventListener('click', function() {
+            modalExperiencia.classList.remove('active');
+            document.getElementById('identidad').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // SISTEMA DE CARGA DINÁMICA DE JUEGO REAL
+        btnStartGame.addEventListener('click', function() {
+            modalExperiencia.classList.remove('active');
+            
+            // Inyectamos la URL codificando el espacio en blanco con %20
+            gameIframe.src = "Hotel%20Zafiro%20Tycoon.html";
+            
+            gameScreen.style.display = 'block';
+            document.body.style.overflow = 'hidden'; 
+        });
+
+        // SALIR Y LIMPIAR LA MEMORIA RAM DEL IFRAME
+        exitGameBtn.addEventListener('click', function() {
+            gameScreen.style.display = 'none';
+            document.body.style.overflow = 'auto'; 
+            
+            // Vaciamos el iframe para detener la ejecución y la música de fondo
+            gameIframe.src = "";
+        });
+    </script>
+</body>
+</html>
